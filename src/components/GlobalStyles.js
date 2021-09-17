@@ -16,29 +16,40 @@ html {
     background: white;
   }
 }
+
 body {
   font-family: 'Montserrat',  sans-serif;
   width: 100%;
 }
 h2 {
- font-size: 3rem;
- font-family: 'Abril Fatface', cursive ;
- font-weight: 300;
- color: #333;
+  font-size: 3rem;
+  font-family: 'Abril Fatface';
+  font-weight: 300;
+  color: #333;
 }
 h3 {
- font-size: 1.3rem;
- color: #333;
- padding: 1.5rem 0rem;
+  font-size: 1.3rem;
+  color: #333;
+  padding: 1.5rem 0rem;
 } 
 P {
- font-size:1.2rem;
- line-height: 200%;
- color: #686868;
+  font-size:1.2rem;
+  line-height: 200%;
+  color: #686868;
 }
 a {
- text-decoration: none;
+  text-decoration: none;
   color: #333;
+}
+
+img {
+  display: block;
+  
+}
+
+input {
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 `
 

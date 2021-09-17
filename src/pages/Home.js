@@ -5,9 +5,10 @@ import { loadGames } from '../actions/gamesAction'
 // components
 import Game from '../components/Game'
 import GameDetail from '../components/GameDetail'
+
 // styling
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 
 const Home = () => {
@@ -27,26 +28,29 @@ const Home = () => {
 
   return (
     <GameList>
-      {pathID && <GameDetail />}
-
-      <h2>Upcoming games</h2>
-      <Games>
-        {upcoming.map((game, index) => {
-          return <Game key={index} {...game} />
-        })}
-      </Games>
-      <h2>new games</h2>
-      <Games>
-        {newGames.map((game, index) => {
-          return <Game key={index} {...game} />
-        })}
-      </Games>
-      <h2>popular games</h2>
-      <Games>
-        {popular.map((game, index) => {
-          return <Game key={index} {...game} />
-        })}
-      </Games>
+      <AnimateSharedLayout type='crossfade'>
+        <AnimatePresence>
+          {pathID && <GameDetail pathID={pathID} />}
+        </AnimatePresence>
+        <h2>Upcoming games</h2>
+        <Games>
+          {upcoming.map((game, index) => {
+            return <Game key={index} id={game.id} {...game} />
+          })}
+        </Games>
+        <h2>new games</h2>
+        <Games>
+          {newGames.map((game, index) => {
+            return <Game key={index} id={game.id} {...game} />
+          })}
+        </Games>
+        <h2>popular games</h2>
+        <Games>
+          {popular.map((game, index) => {
+            return <Game key={index} id={game.id} {...game} />
+          })}
+        </Games>
+      </AnimateSharedLayout>
     </GameList>
   )
 }
