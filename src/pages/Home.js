@@ -10,6 +10,7 @@ import GameDetail from '../components/GameDetail'
 import styled from 'styled-components'
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
+import { fadeIn, popup } from '../animations'
 
 const Home = () => {
   //get current location
@@ -24,14 +25,30 @@ const Home = () => {
 
   //get data back
 
-  const { popular, newGames, upcoming } = useSelector((state) => state.games)
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  )
 
   return (
-    <GameList>
+    <GameList variants={popup} imitial='hidden' animate='show'>
       <AnimateSharedLayout type='crossfade'>
         <AnimatePresence>
           {pathID && <GameDetail pathID={pathID} />}
         </AnimatePresence>
+
+        {searched.length ? (
+          <div className='searched'>
+            <h2>Searched games</h2>
+            <Games>
+              {searched.map((game, index) => {
+                return <Game key={index} id={game.id} {...game} />
+              })}
+            </Games>
+          </div>
+        ) : (
+          ''
+        )}
+
         <h2>Upcoming games</h2>
         <Games>
           {upcoming.map((game, index) => {
